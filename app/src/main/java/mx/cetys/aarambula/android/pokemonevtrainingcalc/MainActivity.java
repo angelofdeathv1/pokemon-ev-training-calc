@@ -5,18 +5,19 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import me.sargunvohra.lib.pokekotlin.client.PokeApi;
-import me.sargunvohra.lib.pokekotlin.client.PokeApiClient;
-import me.sargunvohra.lib.pokekotlin.model.NamedApiResource;
-import me.sargunvohra.lib.pokekotlin.model.NamedApiResourceList;
-import me.sargunvohra.lib.pokekotlin.model.PokemonSpecies;
-import me.sargunvohra.lib.pokekotlin.model.PokemonStat;
+import java.util.List;
+
+import mx.cetys.aarambula.android.pokemonevtrainingcalc.controller.CoreFunctions;
+import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.PokemonAdapter;
+import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.PokemonBattle;
 
 public class MainActivity extends AppCompatActivity {
+    CoreFunctions oCoreFunctions = new CoreFunctions();
+    PokemonAdapter adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +26,30 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        adaptador = new PokemonAdapter(this);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                PokeApi pokeApi = new PokeApiClient();
-                PokemonSpecies bulbasaur = pokeApi.getPokemonSpecies(1);
-                NamedApiResourceList lStats=pokeApi.getStatList(0,10);
-                NamedApiResource oStats=lStats.getResults().get(0);
-
-                Snackbar.make(view, oStats.getName(), Snackbar.LENGTH_LONG)
+                llenarListadoUsuarios(oCoreFunctions.calculatePokemonToDefeat(100, 1, 0, true, true, true, true));
+                Snackbar.make(view, "", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
             }
         });
+    }
+
+    private void llenarListadoUsuarios(List<PokemonBattle> valorArregloUsuarios) {
+        adaptador.clear();
+
+        for (int i = 0; i < valorArregloUsuarios.size(); i++) {
+            PokemonBattle user = valorArregloUsuarios.get(i);
+            adaptador.add(user);
+        }
+
+        adaptador.notifyDataSetChanged();
     }
 
     @Override
