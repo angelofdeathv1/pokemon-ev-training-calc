@@ -14,7 +14,7 @@ import mx.cetys.aarambula.android.pokemonevtrainingcalc.R;
 
 public class PokemonAdapter extends ArrayAdapter<PokemonBattle> {
     public PokemonAdapter(Context context) {
-        super(context, R.layout.content_main, R.id.txtId);
+        super(context, R.layout.pokemonbattles_row, R.id.txtId);
     }
 
     @Override

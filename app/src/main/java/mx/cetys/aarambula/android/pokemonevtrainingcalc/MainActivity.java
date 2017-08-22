@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.PokemonBattle;
 public class MainActivity extends AppCompatActivity {
     CoreFunctions oCoreFunctions = new CoreFunctions();
     PokemonAdapter adaptador;
+    ListView listado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        listado = (ListView) findViewById(R.id.lv_battleList);
         adaptador = new PokemonAdapter(this);
+        listado.setAdapter(adaptador);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 llenarListadoUsuarios(oCoreFunctions.calculatePokemonToDefeat(100, 1, 0, true, true, true, true));
-                Snackbar.make(view, "", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "test", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
             }
