@@ -12,27 +12,26 @@ import mx.cetys.aarambula.android.pokemonevtrainingcalc.R;
  * Created by AngelArambula on 8/21/17.
  */
 
-public class PokemonAdapter extends ArrayAdapter<PokemonBattle> {
+public class PokemonAdapter extends ArrayAdapter<PokemonBattleRow> {
     public PokemonAdapter(Context context) {
         super(context, R.layout.pokemonbattles_row, R.id.txtId);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View vista = super.getView(position, convertView, parent);
-        TextView aux = null;
-        PokemonBattle dato = this.getItem(position);
+        View oView = super.getView(position, convertView, parent);
+        TextView txtDescription;
+        TextView txtPokemonBattles;
 
-        aux = (TextView) vista.findViewById(R.id.txtId);
-        aux.setText(dato.getsLabel());
-        aux = null;
+        PokemonBattleRow oPokemonRow = this.getItem(position);
+        //EVElementsTable oEVElement=oPokemonRow.getoEVElement();
 
-        aux = (TextView) vista.findViewById(R.id.txtNombre);
-        aux.setText(dato.getnPokemon());
-        aux = null;
+        txtDescription = (TextView) oView.findViewById(R.id.txtId);
+        txtDescription.setText(oPokemonRow.getsLabel());
 
-        dato = null;
+        txtPokemonBattles = (TextView) oView.findViewById(R.id.txtNombre);
+        txtPokemonBattles.setText(oPokemonRow.getnPokemon()+"");
 
-        return vista;
+        return oView;
     }
 }

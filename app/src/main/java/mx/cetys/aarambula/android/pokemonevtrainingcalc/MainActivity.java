@@ -1,59 +1,52 @@
 package mx.cetys.aarambula.android.pokemonevtrainingcalc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.TextView;
 
-import java.util.List;
-
-import mx.cetys.aarambula.android.pokemonevtrainingcalc.controller.CoreFunctions;
-import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.PokemonAdapter;
-import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.PokemonBattle;
+import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonBattleListActivity;
 
 public class MainActivity extends AppCompatActivity {
-    CoreFunctions oCoreFunctions = new CoreFunctions();
-    PokemonAdapter adaptador;
-    ListView listado;
+    public static final String EXTRA_TARGET_EV = "TARGET_EV";
+    public static final String EXTRA_BASE_EV = "BASE_EV";
+    public static final String EXTRA_VITAMINS = "VITAMINS";
+    public static final String EXTRA_OPTIONS = "OPTIONS";
+    TextView txtTargetEV;
+    TextView txtBaseEV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        listado = (ListView) findViewById(R.id.lv_battleList);
-        adaptador = new PokemonAdapter(this);
-        listado.setAdapter(adaptador);
+        txtTargetEV = (TextView) findViewById(R.id.editTextTargetEV);
+        txtBaseEV = (TextView) findViewById(R.id.editTextBaseEV);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean[] arrOptions = {true, true, true, true};
 
-                llenarListadoUsuarios(oCoreFunctions.calculatePokemonToDefeat(100, 1, 0, true, true, true, true));
-                Snackbar.make(view, "test", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
+                Intent oIntent = new Intent(getApplicationContext(), PokemonBattleListActivity.class);
+                Bundle oBundle = new Bundle();
+                oBundle.putInt(EXTRA_TARGET_EV, Integer.parseInt(txtTargetEV.getText().toString()));
+                oBundle.putInt(EXTRA_BASE_EV, Integer.parseInt(txtBaseEV.getText().toString()));
+                oBundle.putInt(EXTRA_VITAMINS, 0);
+                oBundle.putBooleanArray(EXTRA_OPTIONS, arrOptions);
+                oIntent.putExtras(oBundle);
+                startActivity(oIntent);
             }
         });
-    }
-
-    private void llenarListadoUsuarios(List<PokemonBattle> valorArregloUsuarios) {
-        adaptador.clear();
-
-        for (int i = 0; i < valorArregloUsuarios.size(); i++) {
-            PokemonBattle user = valorArregloUsuarios.get(i);
-            adaptador.add(user);
-        }
-
-        adaptador.notifyDataSetChanged();
     }
 
     @Override

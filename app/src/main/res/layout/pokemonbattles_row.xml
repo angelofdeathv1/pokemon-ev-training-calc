@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Text" />
+        android:text="Pokemon to defeat with this conditions:" />
 
     <TextView
         android:id="@+id/txtNombre"
@@ -28,5 +28,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Text2" />
+        android:text="" />
 </LinearLayout>

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">PokemonEvTrainingCalc</string>
     <string name="action_settings">Settings</string>
+    <string name="txtBaseEV">Base EV</string>
+    <string name="edtBaseEV">Base EV yield</string>
+    <string name="txtTargetEV">Target EV</string>
+    <string name="edtTargetEV">Target EV spread</string>
 </resources>

@@ -1,9 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/lv_battleList"
-    tools:context="mx.cetys.aarambula.android.pokemonevtrainingcalc.PokemonBattleList">
+    tools:context="mx.cetys.aarambula.android.pokemonevtrainingcalc.MainActivity">
 
-</ListView>
+    <TextView
+        android:id="@+id/textViewTargetEV"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="72dp"
+        android:text="@string/txtTargetEV"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/editTextTargetEV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTargetEV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:hint="@string/edtTargetEV"
+        android:inputType="number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewTargetEV"
+        app:layout_constraintLeft_toRightOf="@+id/textViewTargetEV"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewBaseEV"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/txtBaseEV"
+        app:layout_constraintLeft_toLeftOf="@+id/textViewTargetEV"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTargetEV" />
+
+    <EditText
+        android:id="@+id/editTextBaseEV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/edtBaseEV"
+        android:inputType="number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewBaseEV"
+        app:layout_constraintLeft_toLeftOf="@+id/editTextTargetEV"
+        app:layout_constraintRight_toRightOf="@+id/editTextTargetEV" />
+
+</android.support.constraint.ConstraintLayout>

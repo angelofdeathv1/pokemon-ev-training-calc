@@ -9,6 +9,10 @@ class EVElementsTable {
     private var bSOS: Boolean = false
     private var bPowerItem: Boolean = false
 
+    constructor(){
+
+    }
+
     constructor(bPokerus: Boolean, bSOS: Boolean, bPowerItem: Boolean) {
         this.bPokerus = bPokerus
         this.bSOS = bSOS

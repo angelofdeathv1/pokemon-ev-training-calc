@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PokemonBattleList"></activity>
+        <activity android:name=".view.PokemonBattleListActivity"></activity>
     </application>
 
 </manifest>
