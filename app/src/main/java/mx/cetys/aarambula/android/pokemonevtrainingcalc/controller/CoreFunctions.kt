@@ -62,7 +62,7 @@ class CoreFunctions {
 
             if (nPokemon > 0) {
                 val oPokemonResult = PokemonBattleRow()
-                val oElement=EVElementsTable(oEVElement.isbPokerus(),oEVElement.isbSOS(),oEVElement.isbPowerItem())
+                val oElement = EVElementsTable(oEVElement.isbPokerus(), oEVElement.isbSOS(), oEVElement.isbPowerItem())
                 oPokemonResult.setoEVElement(oElement)
                 oPokemonResult.setnPokemon(nPokemon)
                 oPokemonResult.setsLabel(oEVElement.toString())
@@ -71,5 +71,10 @@ class CoreFunctions {
         }
 
         return lPokemonToDefeat
+    }
+
+    fun calculateEVStat(nBaseStat: Int, nIV: Int, nEV: Int, nLevel: Int, xNature: Double): Double {
+        var xEVStat: Double = Math.floor(((Math.floor((2 * nBaseStat) + nIV + Math.floor(nEV / 4.00)) * nLevel / 100) + 5) * xNature)
+        return xEVStat
     }
 }

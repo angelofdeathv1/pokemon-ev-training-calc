@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonBattleListActivity;
@@ -17,8 +18,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_BASE_EV = "BASE_EV";
     public static final String EXTRA_VITAMINS = "VITAMINS";
     public static final String EXTRA_OPTIONS = "OPTIONS";
-    TextView txtTargetEV;
-    TextView txtBaseEV;
+    private TextView txtTargetEV;
+    private TextView txtBaseEV;
+    private CheckBox chkPokerus;
+    private CheckBox chkSOS;
+    private CheckBox chkPowerItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +34,16 @@ public class MainActivity extends AppCompatActivity {
 
         txtTargetEV = (TextView) findViewById(R.id.editTextTargetEV);
         txtBaseEV = (TextView) findViewById(R.id.editTextBaseEV);
+        chkPokerus = (CheckBox) findViewById(R.id.checkBoxPokerus);
+        chkSOS = (CheckBox) findViewById(R.id.checkBoxSOS);
+        chkPowerItem = (CheckBox) findViewById(R.id.checkBoxPowerItem);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean[] arrOptions = {true, true, true, true};
+
+                boolean[] arrOptions = {chkPokerus.isChecked(), chkSOS.isChecked(), chkPowerItem.isChecked(), true};
 
                 Intent oIntent = new Intent(getApplicationContext(), PokemonBattleListActivity.class);
                 Bundle oBundle = new Bundle();
