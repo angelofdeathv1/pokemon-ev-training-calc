@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PokemonEvTrainingCalc</string>
+    <string name="edtBaseEV">EV Base</string>
+    <string name="edtTargetEV">EV Deseado</string>
+    <string name="txtBaseEV">EV Base</string>
+    <string name="txtTargetEV">EV Deseado</string>
+    <string name="action_settings">Configuracion</string>
+</resources>

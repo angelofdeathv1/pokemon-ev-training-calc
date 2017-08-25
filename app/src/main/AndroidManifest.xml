@@ -18,8 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.PokemonBattleListActivity" />
-        <activity android:name=".view.PokemonEVStatsActivity"></activity>
+        <activity
+            android:name=".view.PokemonBattleListActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".view.PokemonEVStatsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".view.MenuFragmentActivity"></activity>
     </application>
 
 </manifest>
