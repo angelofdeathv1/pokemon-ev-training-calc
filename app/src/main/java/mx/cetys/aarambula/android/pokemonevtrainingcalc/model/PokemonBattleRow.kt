@@ -41,7 +41,7 @@ class PokemonBattleRow {
     }
 
     override fun toString(): String {
-        return super.toString()
+        return "Pokerus"
     }
 
 }

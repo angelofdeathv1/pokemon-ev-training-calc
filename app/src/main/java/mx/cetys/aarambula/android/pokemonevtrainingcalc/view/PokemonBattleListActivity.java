@@ -26,12 +26,14 @@ public class PokemonBattleListActivity extends AppCompatActivity {
         oListView.setAdapter(oPokemonAdapter);
 
         Bundle b = this.getIntent().getExtras();
-        int nTargetEV = b.getInt(MainActivity.EXTRA_TARGET_EV,0);
-        int nBaseEV = b.getInt(MainActivity.EXTRA_BASE_EV,0);
-        int nVitamins = b.getInt(MainActivity.EXTRA_VITAMINS,0);
-        boolean[] arrOptions=b.getBooleanArray(MainActivity.EXTRA_OPTIONS);
+        int nTargetEV = b.getInt(MainActivity.EXTRA_TARGET_EV, 0);
+        //int nBaseEV = b.getInt(MainActivity.EXTRA_BASE_EV, 0);
+        int nVitamins = b.getInt(MainActivity.EXTRA_VITAMINS, 0);
+        boolean[] arrOptionsItem = b.getBooleanArray(MainActivity.EXTRA_ITEM_OPTIONS);
+        boolean[] arrOptionsEV = b.getBooleanArray(MainActivity.EXTRA_EV_OPTIONS);
 
-        fillPokemonList(oCoreFunctions.calculatePokemonToDefeat(nTargetEV, nBaseEV, nVitamins, arrOptions[0],arrOptions[1],arrOptions[2],arrOptions[3]));
+        //fillPokemonList(oCoreFunctions.calculatePokemonToDefeat(nTargetEV, nBaseEV, nVitamins, arrOptions[0],arrOptions[1],arrOptions[2],arrOptions[3]));
+        fillPokemonList(oCoreFunctions.calculatePokemonToDefeat(nTargetEV, arrOptionsEV[0], arrOptionsEV[1], arrOptionsEV[2], nVitamins, arrOptionsItem[0], arrOptionsItem[1], arrOptionsItem[2]));
     }
 
     private void fillPokemonList(List<PokemonBattleRow> lPokemonBattles) {

@@ -1,6 +1,7 @@
 package mx.cetys.aarambula.android.pokemonevtrainingcalc.controller
 
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.EVElementsTable
+import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.EVYieldOption
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.PokemonBattleRow
 
 /**
@@ -9,6 +10,9 @@ import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.PokemonBattleRow
 
 class CoreFunctions {
     private val lEVElements: MutableList<EVElementsTable> = arrayListOf()
+    private val lEVBattles: MutableList<PokemonBattleRow> = mutableListOf()
+    private var arrAllowedF: MutableList<PokemonBattleRow> = mutableListOf()
+    private var bStop: Boolean = false
 
     init {
         InitEVElements()
@@ -23,6 +27,23 @@ class CoreFunctions {
         lEVElements.add(EVElementsTable(false, true, false))
         lEVElements.add(EVElementsTable(false, false, true))
         lEVElements.add(EVElementsTable(false, false, false))
+    }
+
+    private fun InitAllowedValues(lEVYields: MutableList<Int>, bPokerus: Boolean, bSOS: Boolean, bPowerItem: Boolean) {
+        arrAllowedF = mutableListOf()
+        for (i in lEVYields.indices) {
+            for (oEVElement in lEVElements) {
+                if (bPokerus == false && oEVElement.isbPokerus()
+                        || bSOS == false && oEVElement.isbSOS()
+                        || bPowerItem == false && oEVElement.isbPowerItem()) {
+                    continue
+                }
+                val nBaseEV = getBaseEV(lEVYields[i], oEVElement.isbPokerus(), oEVElement.isbSOS(), oEVElement.isbPowerItem())
+                val oPokemonBattle = PokemonBattleRow("", nBaseEV, oEVElement)
+                arrAllowedF.add(oPokemonBattle)
+
+            }
+        }
     }
 
     private fun getBaseEV(nEVSpread: Int, bPokerus: Boolean, bSOS: Boolean, bPowerItem: Boolean): Int {
@@ -73,8 +94,47 @@ class CoreFunctions {
         return lPokemonToDefeat
     }
 
+    fun calculatePokemonToDefeat(nEVTarget: Int,
+                                 bEVYield1: Boolean,
+                                 bEVYield2: Boolean,
+                                 bEVYield3: Boolean,
+                                 nVitamins: Int,
+                                 bPokerus: Boolean,
+                                 bSOS: Boolean,
+                                 bPowerItem: Boolean):
+            MutableList<PokemonBattleRow> {
+        var lPokemonToDefeat: MutableList<PokemonBattleRow> = arrayListOf()
+        val nEVReminder = nEVTarget - if (nVitamins >= 10) 100 else nVitamins * 10
+        bStop = false
+
+        val oOptions = EVYieldOption(bEVYield1, bEVYield2, bEVYield3)
+        InitAllowedValues(oOptions.getEVYields(), bPokerus, bSOS, bPowerItem)
+        lPokemonToDefeat = partitionEVSpread(nEVReminder, nEVReminder)
+
+        return lPokemonToDefeat
+    }
+
     fun calculateEVStat(nBaseStat: Int, nIV: Int, nEV: Int, nLevel: Int, xNature: Double): Double {
-        var xEVStat: Double = Math.floor(((Math.floor((2 * nBaseStat) + nIV + Math.floor(nEV / 4.00)) * nLevel / 100) + 5) * xNature)
-        return xEVStat
+        return Math.floor(((Math.floor((2 * nBaseStat) + nIV + Math.floor(nEV / 4.00)) * nLevel / 100) + 5) * xNature)
+    }
+
+    private fun partitionEVSpread(n: Int, max: Int): MutableList<PokemonBattleRow> {
+        if (n == 0) {
+            bStop = true
+        }
+
+        for (i in Math.min(max, n) downTo 1) {
+            var nIndex = arrAllowedF.indexOfFirst { it.getnPokemon() == i }
+            if (nIndex >= 0 && bStop == false) {
+
+                val oEVElement = arrAllowedF[nIndex].getoEVElement()
+                val oEle = PokemonBattleRow(oEVElement.toString(), i, oEVElement)
+                lEVBattles.add(oEle)
+                partitionEVSpread(n - i, i)
+            } else {
+                continue
+            }
+        }
+        return lEVBattles
     }
 }
