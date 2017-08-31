@@ -6,14 +6,16 @@ package mx.cetys.aarambula.android.pokemonevtrainingcalc.model
 class PokemonBattleRow {
     private var oEVElement: EVElementsTable = EVElementsTable()
     private var sLabel: String = ""
-    private var nPokemon: Int = 0
+    private var nEVYield: Int = 0
+    private var nBaseEV: Int = 0
 
     constructor()
 
-    constructor(sLabel: String, nPokemon: Int, oEVElement: EVElementsTable) {
-        this.nPokemon = nPokemon
-        this.oEVElement = oEVElement
+    constructor(sLabel: String, nBaseEV: Int, nEVYield: Int, oEVElement: EVElementsTable) {
+        this.nEVYield = nEVYield
+        this.nBaseEV = nBaseEV
         this.sLabel = sLabel
+        this.oEVElement = oEVElement
     }
 
     fun getsLabel(): String {
@@ -24,12 +26,20 @@ class PokemonBattleRow {
         this.sLabel = sLabel
     }
 
-    fun getnPokemon(): Int {
-        return nPokemon
+    fun getnBaseEV(): Int {
+        return nBaseEV
     }
 
-    fun setnPokemon(nPokemon: Int) {
-        this.nPokemon = nPokemon
+    fun setnBaseEV(nEVYield: Int) {
+        this.nEVYield = nEVYield
+    }
+
+    fun getnEVYield(): Int {
+        return nEVYield
+    }
+
+    fun setnEVYield(nPokemon: Int) {
+        this.nEVYield = nPokemon
     }
 
     fun getoEVElement(): EVElementsTable {

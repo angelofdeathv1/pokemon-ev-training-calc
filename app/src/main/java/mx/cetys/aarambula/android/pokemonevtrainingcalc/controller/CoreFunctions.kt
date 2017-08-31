@@ -33,13 +33,17 @@ class CoreFunctions {
         arrAllowedF = mutableListOf()
         for (i in lEVYields.indices) {
             for (oEVElement in lEVElements) {
-                if (bPokerus == false && oEVElement.isbPokerus()
-                        || bSOS == false && oEVElement.isbSOS()
+                if (bPokerus != oEVElement.isbPokerus()) {
+                    continue
+                }
+
+                if (bSOS == false && oEVElement.isbSOS()
                         || bPowerItem == false && oEVElement.isbPowerItem()) {
                     continue
                 }
+
                 val nBaseEV = getBaseEV(lEVYields[i], oEVElement.isbPokerus(), oEVElement.isbSOS(), oEVElement.isbPowerItem())
-                val oPokemonBattle = PokemonBattleRow("", nBaseEV, oEVElement)
+                val oPokemonBattle = PokemonBattleRow("", lEVYields[i], nBaseEV, oEVElement)
                 arrAllowedF.add(oPokemonBattle)
 
             }
@@ -85,7 +89,7 @@ class CoreFunctions {
                 val oPokemonResult = PokemonBattleRow()
                 val oElement = EVElementsTable(oEVElement.isbPokerus(), oEVElement.isbSOS(), oEVElement.isbPowerItem())
                 oPokemonResult.setoEVElement(oElement)
-                oPokemonResult.setnPokemon(nPokemon)
+                oPokemonResult.setnEVYield(nPokemon)
                 oPokemonResult.setsLabel(oEVElement.toString())
                 lPokemonToDefeat.add(oPokemonResult)
             }
@@ -124,12 +128,13 @@ class CoreFunctions {
         }
 
         for (i in Math.min(max, n) downTo 1) {
-            var nIndex = arrAllowedF.indexOfFirst { it.getnPokemon() == i }
+            var nIndex = arrAllowedF.indexOfFirst { it.getnEVYield() == i }
             if (nIndex >= 0 && bStop == false) {
 
-                val oEVElement = arrAllowedF[nIndex].getoEVElement()
-                val oEle = PokemonBattleRow(oEVElement.toString(), i, oEVElement)
-                lEVBattles.add(oEle)
+                val oPokemonBattle = arrAllowedF[nIndex]
+                val oEVElement = oPokemonBattle.getoEVElement()
+                val oBattleRow = PokemonBattleRow(oEVElement.toString(), oPokemonBattle.getnBaseEV(), i, oEVElement)
+                lEVBattles.add(oBattleRow)
                 partitionEVSpread(n - i, i)
             } else {
                 continue

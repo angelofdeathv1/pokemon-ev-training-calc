@@ -9,7 +9,7 @@ import java.util.List;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.MainActivity;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.R;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.controller.CoreFunctions;
-import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.PokemonAdapter;
+import mx.cetys.aarambula.android.pokemonevtrainingcalc.controller.PokemonAdapter;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.PokemonBattleRow;
 
 public class PokemonBattleListActivity extends AppCompatActivity {
