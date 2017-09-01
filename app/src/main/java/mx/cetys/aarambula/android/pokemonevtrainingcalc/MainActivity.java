@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.ContactInfo;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonBattleListActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                ContactInfo oContact = new ContactInfo();
+                oContact.setIdx(1);
+                oContact.setName("Name");
+                oContact.setSurname("Surname");
+
                 boolean[] arrOptionsItem = {chkPokerus.isChecked(), chkSOS.isChecked(), chkPowerItem.isChecked(), true};
                 boolean[] arrOptionsEV = {chkEV1.isChecked(), chkEV2.isChecked(), chkEV3.isChecked(), true};
 
@@ -60,10 +66,20 @@ public class MainActivity extends AppCompatActivity {
                 oBundle.putInt(EXTRA_VITAMINS, 0);
                 oBundle.putBooleanArray(EXTRA_ITEM_OPTIONS, arrOptionsItem);
                 oBundle.putBooleanArray(EXTRA_EV_OPTIONS, arrOptionsEV);
+                oBundle.putParcelable("PARSE", oContact);
                 oIntent.putExtras(oBundle);
                 startActivity(oIntent);
             }
         });
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // REQUEST_CODE is defined above
+        if (resultCode == RESULT_OK && requestCode == 1) {
+            // Extract object from result extras
+            // Make sure the key here matches the one specified in the result passed from ActivityTwo.java
+
+        }
     }
 
     @Override

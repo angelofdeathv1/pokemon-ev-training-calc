@@ -1,9 +1,9 @@
 package mx.cetys.aarambula.android.pokemonevtrainingcalc.view;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.R;

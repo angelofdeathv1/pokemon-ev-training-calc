@@ -1,6 +1,7 @@
 package mx.cetys.aarambula.android.pokemonevtrainingcalc.view;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
@@ -8,12 +9,12 @@ import java.util.List;
 
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.MainActivity;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.R;
-import mx.cetys.aarambula.android.pokemonevtrainingcalc.controller.CoreFunctions;
+import mx.cetys.aarambula.android.pokemonevtrainingcalc.controller.EVSpreadFunctions;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.controller.PokemonAdapter;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.PokemonBattleRow;
 
 public class PokemonBattleListActivity extends AppCompatActivity {
-    CoreFunctions oCoreFunctions = new CoreFunctions();
+    EVSpreadFunctions oEVSpreadFunctions = new EVSpreadFunctions();
     PokemonAdapter oPokemonAdapter;
     ListView oListView;
 
@@ -32,8 +33,13 @@ public class PokemonBattleListActivity extends AppCompatActivity {
         boolean[] arrOptionsItem = b.getBooleanArray(MainActivity.EXTRA_ITEM_OPTIONS);
         boolean[] arrOptionsEV = b.getBooleanArray(MainActivity.EXTRA_EV_OPTIONS);
 
-        //fillPokemonList(oCoreFunctions.calculatePokemonToDefeat(nTargetEV, nBaseEV, nVitamins, arrOptions[0],arrOptions[1],arrOptions[2],arrOptions[3]));
-        fillPokemonList(oCoreFunctions.calculatePokemonToDefeat(nTargetEV, arrOptionsEV[0], arrOptionsEV[1], arrOptionsEV[2], nVitamins, arrOptionsItem[0], arrOptionsItem[1], arrOptionsItem[2]));
+        if (oEVSpreadFunctions.validateEVOptions(nTargetEV, arrOptionsEV[0], arrOptionsEV[1], arrOptionsEV[2], nVitamins, arrOptionsItem[0], arrOptionsItem[1], arrOptionsItem[2])) {
+            fillPokemonList(oEVSpreadFunctions.calculatePokemonToDefeat(nTargetEV, nVitamins));
+        } else {
+            DialogFragment newFragment = new CalculateEVDialogFragment();
+            newFragment.show(getSupportFragmentManager(), "missiles");
+        }
+
     }
 
     private void fillPokemonList(List<PokemonBattleRow> lPokemonBattles) {
