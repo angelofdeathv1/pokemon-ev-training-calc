@@ -37,8 +37,8 @@ class CoreFunctions {
                     continue
                 }
 
-                if (bSOS == false && oEVElement.isbSOS()
-                        || bPowerItem == false && oEVElement.isbPowerItem()) {
+                if (!bSOS && oEVElement.isbSOS()
+                        || !bPowerItem && oEVElement.isbPowerItem()) {
                     continue
                 }
 
@@ -48,6 +48,8 @@ class CoreFunctions {
 
             }
         }
+        arrAllowedF.sortByDescending { it.getnEVYield() }
+        arrAllowedF.distinctBy { it.getnEVYield() }
     }
 
     private fun getBaseEV(nEVSpread: Int, bPokerus: Boolean, bSOS: Boolean, bPowerItem: Boolean): Int {
@@ -71,9 +73,9 @@ class CoreFunctions {
         var nCalcBaseEV = 0
         for (oEVElement in lEVElements) {
             //Calculate with the available elements
-            if (bCalculate && (bPokerus == false && oEVElement.isbPokerus()
-                    || bSOS == false && oEVElement.isbSOS()
-                    || bPowerItem == false && oEVElement.isbPowerItem())) {
+            if (bCalculate && (!bPokerus && oEVElement.isbPokerus()
+                    || !bSOS && oEVElement.isbSOS()
+                    || !bPowerItem && oEVElement.isbPowerItem())) {
                 continue
             }
 
@@ -98,6 +100,25 @@ class CoreFunctions {
         return lPokemonToDefeat
     }
 
+    fun validateEVOptions(nEVTarget: Int,
+                          nBaseEV: Int,
+                          nVitamins: Int,
+                          bPokerus: Boolean,
+                          bSOS: Boolean,
+                          bPowerItem: Boolean,
+                          bCalculate: Boolean): Boolean {
+        var nEVReminder = nEVTarget - if (nVitamins >= 10) 100 else nVitamins * 10
+        var nCalcBaseEV = 0
+
+
+        for (oAllowed in arrAllowedF) {
+            nCalcBaseEV=oAllowed.getnEVYield()
+            val nPokemon = nEVReminder / nCalcBaseEV
+            nEVReminder %= nCalcBaseEV
+        }
+        return false
+    }
+
     fun calculatePokemonToDefeat(nEVTarget: Int,
                                  bEVYield1: Boolean,
                                  bEVYield2: Boolean,
@@ -107,7 +128,7 @@ class CoreFunctions {
                                  bSOS: Boolean,
                                  bPowerItem: Boolean):
             MutableList<PokemonBattleRow> {
-        var lPokemonToDefeat: MutableList<PokemonBattleRow> = arrayListOf()
+        var lPokemonToDefeat: MutableList<PokemonBattleRow> = mutableListOf()
         val nEVReminder = nEVTarget - if (nVitamins >= 10) 100 else nVitamins * 10
         bStop = false
 
@@ -129,8 +150,7 @@ class CoreFunctions {
 
         for (i in Math.min(max, n) downTo 1) {
             var nIndex = arrAllowedF.indexOfFirst { it.getnEVYield() == i }
-            if (nIndex >= 0 && bStop == false) {
-
+            if (nIndex >= 0 && !bStop) {
                 val oPokemonBattle = arrAllowedF[nIndex]
                 val oEVElement = oPokemonBattle.getoEVElement()
                 val oBattleRow = PokemonBattleRow(oEVElement.toString(), oPokemonBattle.getnBaseEV(), i, oEVElement)

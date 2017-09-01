@@ -5,4 +5,7 @@
     <string name="edtBaseEV">Base EV yield</string>
     <string name="txtTargetEV">Target EV</string>
     <string name="edtTargetEV">Target EV spread</string>
+    <string name="txtDialogCalculate">Selected EV options won\'t give exact result</string>
+    <string name="txtOptionYesCalculate">Select different EV options</string>
+    <string name="txtOptionNoCalculate">Cancel</string>
 </resources>
