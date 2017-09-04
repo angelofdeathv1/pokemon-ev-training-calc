@@ -38,8 +38,14 @@ public class ContactInfo implements Parcelable {
     }
 
 
-    public ContactInfo(){
+    public ContactInfo() {
 
+    }
+
+    public ContactInfo(String name, String surname, int idx) {
+        this.name = name;
+        this.surname = surname;
+        this.idx = idx;
     }
 
     @Override
@@ -54,7 +60,6 @@ public class ContactInfo implements Parcelable {
         dest.writeInt(idx);
     }
 
-    // Creator
     public static final Parcelable.Creator CREATOR
             = new Parcelable.Creator() {
         public ContactInfo createFromParcel(Parcel in) {
@@ -66,7 +71,6 @@ public class ContactInfo implements Parcelable {
         }
     };
 
-    // "De-parcel object
     public ContactInfo(Parcel in) {
         name = in.readString();
         surname = in.readString();

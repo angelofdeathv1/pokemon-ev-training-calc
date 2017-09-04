@@ -51,6 +51,7 @@ class EVSpreadFunctions {
         bStop = false
         lEVBattles = mutableListOf()
         lPokemonToDefeat = getPartitionEVSpread(nEVReminder, nEVReminder)
+        val oTest=lPokemonToDefeat.groupBy { it.getsLabel() }
 
         return lPokemonToDefeat
     }
@@ -77,6 +78,7 @@ class EVSpreadFunctions {
 
     private fun InitAllowedValues(lEVYields: MutableList<Int>, bPokerus: Boolean, bSOS: Boolean, bPowerItem: Boolean) {
         lEVAllowed = mutableListOf()
+        var nIndex: Int = 0
         for (i in lEVYields.indices) {
             for (oEVElement in lEVElements) {
                 if (bPokerus != oEVElement.isbPokerus()) {
@@ -89,8 +91,9 @@ class EVSpreadFunctions {
                 }
 
                 val nBaseEV = getBaseEV(lEVYields[i], oEVElement.isbPokerus(), oEVElement.isbSOS(), oEVElement.isbPowerItem())
-                val oPokemonBattle = PokemonBattleRow("", lEVYields[i], nBaseEV, oEVElement)
+                val oPokemonBattle = PokemonBattleRow(nIndex.toString(), lEVYields[i], nBaseEV, oEVElement)
                 lEVAllowed.add(oPokemonBattle)
+                nIndex += 1
 
             }
         }

@@ -13,22 +13,9 @@ import android.widget.TextView;
 
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.ContactInfo;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonBattleListActivity;
+import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonEVTrainingActivity;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_TARGET_EV = "TARGET_EV";
-    public static final String EXTRA_BASE_EV = "BASE_EV";
-    public static final String EXTRA_VITAMINS = "VITAMINS";
-    public static final String EXTRA_ITEM_OPTIONS = "OPTIONS";
-    public static final String EXTRA_EV_OPTIONS = "EV_OPTIONS";
-    private TextView txtTargetEV;
-    private TextView txtBaseEV;
-    private CheckBox chkPokerus;
-    private CheckBox chkSOS;
-    private CheckBox chkPowerItem;
-    private CheckBox chkEV1;
-    private CheckBox chkEV2;
-    private CheckBox chkEV3;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,47 +24,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        txtTargetEV = (TextView) findViewById(R.id.editTextTargetEV);
-        txtBaseEV = (TextView) findViewById(R.id.editTextBaseEV);
-        chkPokerus = (CheckBox) findViewById(R.id.checkBoxPokerus);
-        chkSOS = (CheckBox) findViewById(R.id.checkBoxSOS);
-        chkPowerItem = (CheckBox) findViewById(R.id.checkBoxPowerItem);
-        chkEV1 = (CheckBox) findViewById(R.id.checkBoxEV1);
-        chkEV2 = (CheckBox) findViewById(R.id.checkBoxEV2);
-        chkEV3 = (CheckBox) findViewById(R.id.checkBoxEV3);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ContactInfo oContact = new ContactInfo();
-                oContact.setIdx(1);
-                oContact.setName("Name");
-                oContact.setSurname("Surname");
-
-                boolean[] arrOptionsItem = {chkPokerus.isChecked(), chkSOS.isChecked(), chkPowerItem.isChecked(), true};
-                boolean[] arrOptionsEV = {chkEV1.isChecked(), chkEV2.isChecked(), chkEV3.isChecked(), true};
-
-                Intent oIntent = new Intent(getApplicationContext(), PokemonBattleListActivity.class);
-                Bundle oBundle = new Bundle();
-                oBundle.putInt(EXTRA_TARGET_EV, Integer.parseInt(txtTargetEV.getText().toString()));
-                //oBundle.putInt(EXTRA_BASE_EV, Integer.parseInt(txtBaseEV.getText().toString()));
-                oBundle.putInt(EXTRA_VITAMINS, 0);
-                oBundle.putBooleanArray(EXTRA_ITEM_OPTIONS, arrOptionsItem);
-                oBundle.putBooleanArray(EXTRA_EV_OPTIONS, arrOptionsEV);
-                oBundle.putParcelable("PARSE", oContact);
-                oIntent.putExtras(oBundle);
+                Intent oIntent = new Intent(getApplicationContext(), PokemonEVTrainingActivity.class);
                 startActivity(oIntent);
             }
         });
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // REQUEST_CODE is defined above
         if (resultCode == RESULT_OK && requestCode == 1) {
-            // Extract object from result extras
-            // Make sure the key here matches the one specified in the result passed from ActivityTwo.java
 
         }
     }
