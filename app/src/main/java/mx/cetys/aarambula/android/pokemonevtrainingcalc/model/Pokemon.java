@@ -2,7 +2,6 @@ package mx.cetys.aarambula.android.pokemonevtrainingcalc.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
 
 public class Pokemon implements Parcelable {
 

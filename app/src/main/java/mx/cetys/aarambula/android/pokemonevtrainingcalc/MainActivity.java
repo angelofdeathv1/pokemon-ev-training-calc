@@ -5,25 +5,11 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-
-import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.ContactInfo;
-import mx.cetys.aarambula.android.pokemonevtrainingcalc.model.Pokemon;
-import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonBattleListActivity;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonEVStatsActivity;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonEVTrainingActivity;
 

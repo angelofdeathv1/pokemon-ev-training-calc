@@ -1,17 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonEVStatsActivity">
 
-    <Spinner
-        android:id="@+id/spinner"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="15dp" />
-</android.widget.RelativeLayout>
+        android:ems="10"
+        android:text="Pkm No." />
+
+    <EditText
+        android:id="@+id/editTextPkmNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Stat Points" />
+
+    <EditText
+        android:id="@+id/editTextStat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonHP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="HP" />
+
+        <RadioButton
+            android:id="@+id/radioButtonATK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Atk" />
+
+        <RadioButton
+            android:id="@+id/radioButtonDEF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Def" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSPE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Spe" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSPD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="SpD" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSPA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="SpA" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnSearchPkm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calculate Stats" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Stat Points" />
+
+    <TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="14"
+        android:text="" />
+
+</android.widget.LinearLayout>

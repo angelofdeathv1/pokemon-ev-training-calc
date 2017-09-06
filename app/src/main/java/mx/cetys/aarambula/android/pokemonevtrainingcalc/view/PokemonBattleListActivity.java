@@ -1,6 +1,5 @@
 package mx.cetys.aarambula.android.pokemonevtrainingcalc.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import mx.cetys.aarambula.android.pokemonevtrainingcalc.MainActivity;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.R;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.controller.EVSpreadFunctions;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.controller.PokemonAdapter;
