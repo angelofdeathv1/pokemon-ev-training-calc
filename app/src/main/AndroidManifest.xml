@@ -24,7 +24,6 @@
         <activity
             android:name=".view.PokemonEVStatsActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".view.MenuFragmentActivity" />
         <activity android:name=".view.PokemonEVTrainingActivity" />
         <activity android:name=".view.PokemonBattleExpListActivity"></activity>
     </application>
