@@ -5,21 +5,21 @@ import android.os.Parcelable;
 
 public class Pokemon implements Parcelable {
 
-    private Integer no;
-    private String name;
-    private Integer hP;
-    private Integer atk;
-    private Integer def;
-    private Integer sPAtk;
-    private Integer sPDef;
-    private Integer spd;
-    private Integer tot;
-    private Integer eVHP;
-    private Integer eVAtk;
-    private Integer eVDef;
-    private Integer eVSPAtk;
-    private Integer eVSPDef;
-    private Integer eVSpd;
+    private int No;
+    private String Name;
+    private int HP;
+    private int Atk;
+    private int Def;
+    private int SPAtk;
+    private int SPDef;
+    private int Spd;
+    private int Tot;
+    private int EV_HP;
+    private int EV_Atk;
+    private int EV_Def;
+    private int EV_SPAtk;
+    private int EV_SPDef;
+    private int EV_Spd;
     public final static Parcelable.Creator<Pokemon> CREATOR = new Creator<Pokemon>() {
 
 
@@ -28,21 +28,21 @@ public class Pokemon implements Parcelable {
         })
         public Pokemon createFromParcel(Parcel in) {
             Pokemon instance = new Pokemon();
-            instance.no = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.name = ((String) in.readValue((String.class.getClassLoader())));
-            instance.hP = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.atk = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.def = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.sPAtk = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.sPDef = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.spd = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.tot = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.eVHP = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.eVAtk = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.eVDef = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.eVSPAtk = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.eVSPDef = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.eVSpd = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.No = in.readInt();
+            instance.Name = in.readString();
+            instance.HP = in.readInt();
+            instance.Atk = in.readInt();
+            instance.Def = in.readInt();
+            instance.SPAtk = in.readInt();
+            instance.SPDef = in.readInt();
+            instance.Spd = in.readInt();
+            instance.Tot = in.readInt();
+            instance.EV_HP = in.readInt();
+            instance.EV_Atk = in.readInt();
+            instance.EV_Def = in.readInt();
+            instance.EV_SPAtk = in.readInt();
+            instance.EV_SPDef = in.readInt();
+            instance.EV_Spd = in.readInt();
             return instance;
         }
 
@@ -58,178 +58,160 @@ public class Pokemon implements Parcelable {
     public Pokemon() {
     }
 
-    /**
-     * @param eVSpd
-     * @param eVSPDef
-     * @param no
-     * @param eVAtk
-     * @param atk
-     * @param tot
-     * @param def
-     * @param eVDef
-     * @param name
-     * @param sPDef
-     * @param eVSPAtk
-     * @param spd
-     * @param sPAtk
-     * @param eVHP
-     * @param hP
-     */
-    public Pokemon(Integer no, String name, Integer hP, Integer atk, Integer def, Integer sPAtk, Integer sPDef, Integer spd, Integer tot, Integer eVHP, Integer eVAtk, Integer eVDef, Integer eVSPAtk, Integer eVSPDef, Integer eVSpd) {
-        super();
-        this.no = no;
-        this.name = name;
-        this.hP = hP;
-        this.atk = atk;
-        this.def = def;
-        this.sPAtk = sPAtk;
-        this.sPDef = sPDef;
-        this.spd = spd;
-        this.tot = tot;
-        this.eVHP = eVHP;
-        this.eVAtk = eVAtk;
-        this.eVDef = eVDef;
-        this.eVSPAtk = eVSPAtk;
-        this.eVSPDef = eVSPDef;
-        this.eVSpd = eVSpd;
+    public Pokemon(int no, String name, int HP, int atk, int def, int SPAtk, int SPDef, int spd, int tot, int EV_HP, int EV_Atk, int EV_Def, int EV_SPAtk, int EV_SPDef, int EV_Spd) {
+        this.No = no;
+        this.Name = name;
+        this.HP = HP;
+        this.Atk = atk;
+        this.Def = def;
+        this.SPAtk = SPAtk;
+        this.SPDef = SPDef;
+        this.Spd = spd;
+        this.Tot = tot;
+        this.EV_HP = EV_HP;
+        this.EV_Atk = EV_Atk;
+        this.EV_Def = EV_Def;
+        this.EV_SPAtk = EV_SPAtk;
+        this.EV_SPDef = EV_SPDef;
+        this.EV_Spd = EV_Spd;
     }
 
-    public Integer getNo() {
-        return no;
+    public int getNo() {
+        return No;
     }
 
-    public void setNo(Integer no) {
-        this.no = no;
+    public void setNo(int no) {
+        No = no;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 
-    public Integer getHP() {
-        return hP;
+    public int getHP() {
+        return HP;
     }
 
-    public void setHP(Integer hP) {
-        this.hP = hP;
+    public void setHP(int HP) {
+        this.HP = HP;
     }
 
-    public Integer getAtk() {
-        return atk;
+    public int getAtk() {
+        return Atk;
     }
 
-    public void setAtk(Integer atk) {
-        this.atk = atk;
+    public void setAtk(int atk) {
+        Atk = atk;
     }
 
-    public Integer getDef() {
-        return def;
+    public int getDef() {
+        return Def;
     }
 
-    public void setDef(Integer def) {
-        this.def = def;
+    public void setDef(int def) {
+        Def = def;
     }
 
-    public Integer getSPAtk() {
-        return sPAtk;
+    public int getSPAtk() {
+        return SPAtk;
     }
 
-    public void setSPAtk(Integer sPAtk) {
-        this.sPAtk = sPAtk;
+    public void setSPAtk(int SPAtk) {
+        this.SPAtk = SPAtk;
     }
 
-    public Integer getSPDef() {
-        return sPDef;
+    public int getSPDef() {
+        return SPDef;
     }
 
-    public void setSPDef(Integer sPDef) {
-        this.sPDef = sPDef;
+    public void setSPDef(int SPDef) {
+        this.SPDef = SPDef;
     }
 
-    public Integer getSpd() {
-        return spd;
+    public int getSpd() {
+        return Spd;
     }
 
-    public void setSpd(Integer spd) {
-        this.spd = spd;
+    public void setSpd(int spd) {
+        Spd = spd;
     }
 
-    public Integer getTot() {
-        return tot;
+    public int getTot() {
+        return Tot;
     }
 
-    public void setTot(Integer tot) {
-        this.tot = tot;
+    public void setTot(int tot) {
+        Tot = tot;
     }
 
-    public Integer getEVHP() {
-        return eVHP;
+    public int getEV_HP() {
+        return EV_HP;
     }
 
-    public void setEVHP(Integer eVHP) {
-        this.eVHP = eVHP;
+    public void setEV_HP(int EV_HP) {
+        this.EV_HP = EV_HP;
     }
 
-    public Integer getEVAtk() {
-        return eVAtk;
+    public int getEV_Atk() {
+        return EV_Atk;
     }
 
-    public void setEVAtk(Integer eVAtk) {
-        this.eVAtk = eVAtk;
+    public void setEV_Atk(int EV_Atk) {
+        this.EV_Atk = EV_Atk;
     }
 
-    public Integer getEVDef() {
-        return eVDef;
+    public int getEV_Def() {
+        return EV_Def;
     }
 
-    public void setEVDef(Integer eVDef) {
-        this.eVDef = eVDef;
+    public void setEV_Def(int EV_Def) {
+        this.EV_Def = EV_Def;
     }
 
-    public Integer getEVSPAtk() {
-        return eVSPAtk;
+    public int getEV_SPAtk() {
+        return EV_SPAtk;
     }
 
-    public void setEVSPAtk(Integer eVSPAtk) {
-        this.eVSPAtk = eVSPAtk;
+    public void setEV_SPAtk(int EV_SPAtk) {
+        this.EV_SPAtk = EV_SPAtk;
     }
 
-    public Integer getEVSPDef() {
-        return eVSPDef;
+    public int getEV_SPDef() {
+        return EV_SPDef;
     }
 
-    public void setEVSPDef(Integer eVSPDef) {
-        this.eVSPDef = eVSPDef;
+    public void setEV_SPDef(int EV_SPDef) {
+        this.EV_SPDef = EV_SPDef;
     }
 
-    public Integer getEVSpd() {
-        return eVSpd;
+    public int getEV_Spd() {
+        return EV_Spd;
     }
 
-    public void setEVSpd(Integer eVSpd) {
-        this.eVSpd = eVSpd;
+    public void setEV_Spd(int EV_Spd) {
+        this.EV_Spd = EV_Spd;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(no);
-        dest.writeValue(name);
-        dest.writeValue(hP);
-        dest.writeValue(atk);
-        dest.writeValue(def);
-        dest.writeValue(sPAtk);
-        dest.writeValue(sPDef);
-        dest.writeValue(spd);
-        dest.writeValue(tot);
-        dest.writeValue(eVHP);
-        dest.writeValue(eVAtk);
-        dest.writeValue(eVDef);
-        dest.writeValue(eVSPAtk);
-        dest.writeValue(eVSPDef);
-        dest.writeValue(eVSpd);
+        dest.writeValue(No);
+        dest.writeValue(Name);
+        dest.writeValue(HP);
+        dest.writeValue(Atk);
+        dest.writeValue(Def);
+        dest.writeValue(SPAtk);
+        dest.writeValue(SPDef);
+        dest.writeValue(Spd);
+        dest.writeValue(Tot);
+        dest.writeValue(EV_HP);
+        dest.writeValue(EV_Atk);
+        dest.writeValue(EV_Def);
+        dest.writeValue(EV_SPAtk);
+        dest.writeValue(EV_SPDef);
+        dest.writeValue(EV_Spd);
     }
 
     public int describeContents() {
