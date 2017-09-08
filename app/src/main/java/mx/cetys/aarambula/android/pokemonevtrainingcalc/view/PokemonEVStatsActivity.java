@@ -168,6 +168,6 @@ public class PokemonEVStatsActivity extends AppCompatActivity {
         int nStat = Integer.parseInt(edtStat.getText().toString());
         int nLevel = Integer.parseInt(edtLevel.getText().toString());
         double xNature = Double.parseDouble(edtNature.getText().toString());
-        return oEVCore.getEVStat(nPkmBaseStat, skbIV.getProgress(), nStat, nLevel, xNature);
+         return oEVCore.getEVStat(nPkmBaseStat, skbIV.getProgress(), nStat, nLevel, xNature);
     }
 }
