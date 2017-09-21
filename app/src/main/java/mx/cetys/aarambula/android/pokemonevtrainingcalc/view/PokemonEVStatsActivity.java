@@ -28,12 +28,14 @@ public class PokemonEVStatsActivity extends AppCompatActivity {
     private ArrayList<Pokemon> lPokemon;
     private Button btnCalculate;
     private SeekBar skbIV;
+    private SeekBar skbEV;
     private EditText edtPkmNo;
     private EditText edtStat;
     private EditText edtLevel;
     private EditText edtNature;
     private TextView txtResult;
     private TextView txtIV;
+    private TextView txtEV;
     private EVStatsFunctions oEVCore = new EVStatsFunctions();
     private Pokemon oPkmToCalc = new Pokemon();
 
@@ -44,12 +46,12 @@ public class PokemonEVStatsActivity extends AppCompatActivity {
 
         oDatabase = FirebaseDatabase.getInstance();
         oDatabase.setPersistenceEnabled(true);
-        mDatabase = oDatabase.getReference();
+        mDatabase = oDatabase.getReference("Pokemon");
 
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                lPokemon = new ArrayList<Pokemon>();
+                lPokemon = new ArrayList<>();
                 for (DataSnapshot dataPkm : dataSnapshot.getChildren()) {
                     Pokemon pkm = dataPkm.getValue(Pokemon.class);
                     lPokemon.add(pkm);
@@ -66,12 +68,14 @@ public class PokemonEVStatsActivity extends AppCompatActivity {
 
         btnCalculate = (Button) findViewById(R.id.btnSearchPkm);
         skbIV = (SeekBar) findViewById(R.id.seekBarIV);
+        skbEV = (SeekBar) findViewById(R.id.seekBarEV);
         edtPkmNo = (EditText) findViewById(R.id.editTextPkmNo);
         edtStat = (EditText) findViewById(R.id.editTextStat);
         edtNature = (EditText) findViewById(R.id.editTextNature);
         edtLevel = (EditText) findViewById(R.id.editTextLevel);
         txtResult = (TextView) findViewById(R.id.textViewResult);
         txtIV = (TextView) findViewById(R.id.textViewIV);
+        txtEV = (TextView) findViewById(R.id.textViewEV);
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +90,11 @@ public class PokemonEVStatsActivity extends AppCompatActivity {
 
         skbIV.setMax(31);
         skbIV.setProgress(0);
+        skbEV.setMax(252);
+        skbEV.setProgress(0);
+
         txtIV.setText("IV: " + 0 + "/" + skbIV.getMax());
+        txtEV.setText("EV: " + 0 + "/" + skbEV.getMax());
 
         skbIV.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int nProgress = 0;
@@ -105,6 +113,26 @@ public class PokemonEVStatsActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 txtIV.setText("IV: " + nProgress + "/" + seekBar.getMax());
+            }
+        });
+
+        skbEV.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int nProgress = 0;
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
+                nProgress = progressValue;
+                txtEV.setText("EV: " + nProgress + "/" + seekBar.getMax());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                txtEV.setText("EV: " + nProgress + "/" + seekBar.getMax());
             }
         });
     }
@@ -168,6 +196,6 @@ public class PokemonEVStatsActivity extends AppCompatActivity {
         int nStat = Integer.parseInt(edtStat.getText().toString());
         int nLevel = Integer.parseInt(edtLevel.getText().toString());
         double xNature = Double.parseDouble(edtNature.getText().toString());
-         return oEVCore.getEVStat(nPkmBaseStat, skbIV.getProgress(), nStat, nLevel, xNature);
+        return oEVCore.getEVStat(nPkmBaseStat, skbIV.getProgress(), nStat, nLevel, xNature);
     }
 }

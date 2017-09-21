@@ -36,20 +36,6 @@
         android:inputType="number" />
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="Stat Points" />
-
-    <EditText
-        android:id="@+id/editTextStat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -124,7 +110,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="31"
-        android:progress="1" />
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/textViewEV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="EV" />
+
+    <SeekBar
+        android:id="@+id/seekBarEV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="252"
+        android:progress="0" />
 
     <Button
         android:id="@+id/btnSearchPkm"
@@ -147,5 +147,18 @@
         android:text=""
         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Stat Points" />
+
+    <EditText
+        android:id="@+id/editTextStat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
 
 </android.widget.LinearLayout>
