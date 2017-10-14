@@ -9,6 +9,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonEVStatsActivity;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonEVTrainingActivity;
@@ -16,6 +24,7 @@ import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonEVTrainingAc
 public class MainActivity extends AppCompatActivity {
 
     Button btnCalculate;
+    TextView txtText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         btnCalculate = (Button) findViewById(R.id.button2);
-
+        txtText = (TextView) findViewById(R.id.textView7);
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +53,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(oIntent);
             }
         });
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://jsonplaceholder.typicode.com/posts";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        txtText.setText("Response is: " + response.substring(0, 500));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                txtText.setText("That didn't work!");
+            }
+        });
+
+        queue.add(stringRequest);
     }
 
     public void calculateEV() {

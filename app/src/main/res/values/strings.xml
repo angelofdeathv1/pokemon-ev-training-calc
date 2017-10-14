@@ -8,4 +8,5 @@
     <string name="txtDialogCalculate">Selected EV options won\'t give exact result</string>
     <string name="txtOptionYesCalculate">Select different EV options</string>
     <string name="txtOptionNoCalculate">Cancel</string>
+    <string name="title_activity_async_task">AsyncTaskActivity</string>
 </resources>
