@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.AsyncTaskActivity;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonEVStatsActivity;
 import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonEVTrainingActivity;
 
@@ -49,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent oIntent = new Intent(getApplicationContext(), PokemonEVTrainingActivity.class);
+                //Intent oIntent = new Intent(getApplicationContext(), PokemonEVTrainingActivity.class);
+                Intent oIntent = new Intent(getApplicationContext(), AsyncTaskActivity.class);
                 startActivity(oIntent);
             }
         });

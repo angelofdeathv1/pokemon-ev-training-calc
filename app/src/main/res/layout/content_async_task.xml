@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="mx.cetys.aarambula.android.pokemonevtrainingcalc.view.AsyncTaskActivity"
     tools:showIn="@layout/activity_async_task">
 
-</android.support.constraint.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:backgroundTint="#FFFFFF"
+        android:indeterminate="true"
+        android:indeterminateTint="#1a09d6"
+        android:max="100" />
+</android.widget.LinearLayout>
