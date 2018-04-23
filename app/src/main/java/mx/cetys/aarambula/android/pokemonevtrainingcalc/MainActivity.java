@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -24,6 +25,7 @@ import mx.cetys.aarambula.android.pokemonevtrainingcalc.view.PokemonEVTrainingAc
 
 public class MainActivity extends AppCompatActivity {
 
+    ProgressBar progressBar;
     Button btnCalculate;
     TextView txtText;
 
@@ -37,8 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+
         btnCalculate = (Button) findViewById(R.id.button2);
         txtText = (TextView) findViewById(R.id.textView7);
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.INVISIBLE);
+
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,32 +53,38 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent oIntent = new Intent(getApplicationContext(), PokemonEVTrainingActivity.class);
-                Intent oIntent = new Intent(getApplicationContext(), AsyncTaskActivity.class);
-                startActivity(oIntent);
-            }
-        });
-
-        RequestQueue queue = Volley.newRequestQueue(this);
+        final RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://jsonplaceholder.typicode.com/posts";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        final StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        progressBar.setVisibility(View.INVISIBLE);
                         txtText.setText("Response is: " + response.substring(0, 500));
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.INVISIBLE);
                 txtText.setText("That didn't work!");
             }
         });
 
-        queue.add(stringRequest);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent oIntent = new Intent(getApplicationContext(), PokemonEVTrainingActivity.class);
+                /*Intent oIntent = new Intent(getApplicationContext(), AsyncTaskActivity.class);
+                startActivity(oIntent);*/
+                txtText.setText("");
+                progressBar.setVisibility(View.VISIBLE);
+                queue.add(stringRequest);
+
+            }
+        });
+
+
     }
 
     public void calculateEV() {
